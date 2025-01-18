@@ -28,6 +28,15 @@ $chapters = $db->query("SELECT * FROM book_chapters WHERE book_id = ? ORDER BY c
 
     <div id="message"></div>
 
+    <div id="progress-container">
+        <progress id="progressBar" value="0" max="100"></progress>
+        <span id="progressText">0/0</span>
+    </div>
+
+    <div id="uploadedFiles">
+        <!-- Tu będą pojawiały się informacje o przesłanych plikach -->
+    </div>
+
     <h3>Lista rozdziałów</h3>
     <ul id="chapter-list" class="sortable"></ul>
 </div>
@@ -56,23 +65,63 @@ $(document).ready(function () {
         });
     }
 
-    // Wysyłanie plików
     $('#uploadForm').on('submit', function (e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        formData.append('csrf_token', csrfToken);
-        formData.append('book_id', bookId);
 
-        $.ajax({
-            url: 'uploadChapter.php',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                $('#message').text(response.message || 'Dodano rozdziały.');
-                loadChapters();
-            }
+        const files = $('#files')[0].files; // Pobierz pliki
+        const totalFiles = files.length; // Łączna liczba plików
+        let uploadedFiles = 0; // Licznik przesłanych plików
+        const progressBar = $('#progressBar'); // Pasek postępu
+        const progressText = $('#progressText'); // Licznik postępu
+
+        if (totalFiles === 0) {
+            alert('Nie wybrano plików do przesłania.');
+            return;
+        }
+
+        progressBar.val(0); // Zresetuj pasek postępu
+        progressText.text(`0/${totalFiles}`); // Zresetuj licznik
+
+        // Iteracja po plikach i ich przesyłanie
+        Array.from(files).forEach((file, index) => {
+            let formData = new FormData();
+            formData.append('files[]', file);
+            formData.append('csrf_token', $('input[name="csrf_token"]').val());
+            formData.append('book_id', $('#book_id').val());
+
+            $.ajax({
+                url: 'uploadChapter.php',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                xhr: function () {
+                    const xhr = new XMLHttpRequest();
+                    xhr.upload.addEventListener('progress', function (e) {
+                        if (e.lengthComputable) {
+                            const percentComplete = (e.loaded / e.total) * 100;
+                            progressBar.val(((uploadedFiles + percentComplete / 100) / totalFiles) * 100); // Aktualizacja wspólnego paska
+                        }
+                    });
+                    return xhr;
+                },
+                success: function (response) {
+                    if (response.success) {
+                        uploadedFiles++; // Zwiększ licznik przesłanych plików
+                        progressText.text(`${uploadedFiles}/${totalFiles}`); // Aktualizuj tekst
+                        $('#uploadedFiles').append(`<div>Przesłano plik: ${file.name}</div>`); // Aktualizuj listę
+                    } else {
+                        alert(`Błąd podczas przesyłania pliku: ${file.name}`);
+                    }
+
+                    if (uploadedFiles === totalFiles) {
+                        loadChapters();
+                    }
+                },
+                error: function () {
+                    alert(`Wystąpił błąd podczas przesyłania pliku: ${file.name}`);
+                }
+            });
         });
     });
 

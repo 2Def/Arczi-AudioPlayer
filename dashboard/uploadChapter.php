@@ -52,4 +52,9 @@ foreach ($_FILES['files']['name'] as $key => $name) {
     }
 }
 
-echo json_encode(['success' => true, 'uploaded_files' => $uploadedFiles]);
+echo json_encode([
+    'success' => true,
+    'uploaded_files' => $uploadedFiles,
+    'total_files' => count($uploadedFiles)
+]);
+

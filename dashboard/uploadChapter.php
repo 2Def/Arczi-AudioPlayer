@@ -3,6 +3,8 @@ header('Content-Type: application/json');
 define('ACCESS_ALLOWED', true);
 session_start();
 require_once '../mysql.php';
+require_once '../getid3/getid3.php';
+
 
 if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
     echo json_encode(['success' => false, 'message' => 'Nieprawidłowy token CSRF.']);
@@ -35,7 +37,16 @@ foreach ($_FILES['files']['name'] as $key => $name) {
     $targetFilePath = $uploadDir . $randomFileName;
 
     if (move_uploaded_file($tmpName, $targetFilePath)) {
-        $duration = 0; // Placeholder for now. Duration extraction can be added if needed.
+        $duration = 0;
+        
+        if ($fileExtension === 'mp3') {
+            $getID3 = new getID3;
+            $fileInfo = $getID3->analyze($targetFilePath);
+
+            if (isset($fileInfo['playtime_seconds'])) {
+                $duration = $fileInfo['playtime_seconds'];
+            }
+        }
 
         $lastChapter = $db->query("SELECT MAX(chapter_number) AS max_number FROM book_chapters WHERE book_id = ?", [$bookId])->fetch_assoc();
         $nextChapterNumber = ($lastChapter['max_number'] ?? 0) + 1;

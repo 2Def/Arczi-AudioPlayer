@@ -33,7 +33,7 @@ if (empty($_SESSION['csrf_token'])) {
     <div id="message"></div>
     <div id="progress-container">
         <progress id="progressBar" value="0" max="100"></progress>
-        <span id="progress-text"></span>
+        <span id="progressText"></span>
     </div>
 </div>
 
@@ -43,6 +43,8 @@ if (empty($_SESSION['csrf_token'])) {
             e.preventDefault();
 
             let formData = new FormData(this);
+            const progressContainer = $('#progress-container');
+            progressContainer.show();
 
             $.ajax({
                 url: 'formAddNewBook.php',
@@ -68,6 +70,7 @@ if (empty($_SESSION['csrf_token'])) {
                         $('#uploadForm')[0].reset();
                         $('#progressBar').val(0);
                         $('#progress-text').text('');
+                        progressContainer.hide();
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

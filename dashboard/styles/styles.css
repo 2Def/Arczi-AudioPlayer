@@ -89,7 +89,7 @@ nav button:hover {
 }
 
 .form-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
@@ -196,10 +196,10 @@ nav a:hover {
     background-color: #555;
 }
 
-.progress-container {
-    display: flex;
+#progress-container {
     align-items: center;
     margin-bottom: 10px;
+    display: none;
 }
 
 progress {
@@ -319,4 +319,21 @@ progress::-moz-progress-bar {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.load-chapter {
+    background: #0056b3;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.mp3-player{
+    width: 100%;
+    display: none;
+}
+
+audio{
+    width: 100%;
 }

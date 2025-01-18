@@ -33,6 +33,14 @@ $chapters = $db->query("SELECT * FROM book_chapters WHERE book_id = ? ORDER BY c
 <br /><hr /><br />
     <h3>Lista rozdziałów</h3>
     <ul id="chapter-list" class="sortable"></ul>
+
+    <br /><hr /><br />
+
+    <div id="mp3-player" class="mp3-player">
+        <audio id="audio" controls>
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+    </div>
 </div>
 
 <script>
@@ -51,7 +59,7 @@ $(document).ready(function () {
                             <span class="chapter-number">Rozdział ${chapter.chapter_number}</span>
                             <input type="text" class="chapter-title" value="${chapter.title}">
                             <button class="delete-chapter" data-id="${chapter.id}">Usuń</button>
-                            <button class="" data-id="${chapter.filename}">Włącz</button>
+                            <button class="load-chapter" data-filename="${chapter.filename}">Załaduj</button>
                         </li>
                     `);
                 });
@@ -68,6 +76,7 @@ $(document).ready(function () {
         let uploadedFiles = 0; // Licznik przesłanych plików
         const progressBar = $('#progressBar'); // Pasek postępu
         const progressText = $('#progressText'); // Licznik postępu
+        const progressContainer = $('#progress-container');
 
         if (totalFiles === 0) {
             alert('Nie wybrano plików do przesłania.');
@@ -76,6 +85,7 @@ $(document).ready(function () {
 
         progressBar.val(0); // Zresetuj pasek postępu
         progressText.text(`0/${totalFiles}`); // Zresetuj licznik
+        progressContainer.show();
 
         // Iteracja po plikach i ich przesyłanie
         Array.from(files).forEach((file, index) => {
@@ -109,6 +119,7 @@ $(document).ready(function () {
                     }
 
                     if (uploadedFiles === totalFiles) {
+                        progressContainer.hide();
                         loadChapters();
                     }
                 },
@@ -129,6 +140,20 @@ $(document).ready(function () {
                 alert('Nie udało się usunąć rozdziału.');
             }
         });
+    });
+
+    // Włączanie playera
+    $('#chapter-list').on('click', '.load-chapter', function () {
+        const fileSource = $(this).data('filename');
+        const targetElementNew = $('#mp3-player');
+        targetElementNew.show();
+
+        $('html, body').animate({
+            scrollTop: $('#mp3-player').offset().top
+        }, 1000);
+        
+        $('#audio').attr('src', 'uploads/chapters/'+fileSource);
+        $('#audio')[0].load(); 
     });
 
     // Aktualizacja tytułu rozdziału
@@ -161,7 +186,6 @@ $(document).ready(function () {
         });
     }
 
-    // Początkowe wczytanie listy
     loadChapters();
 });
 </script>

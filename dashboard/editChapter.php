@@ -14,7 +14,7 @@ $db = new Database();
 $chapters = $db->query("SELECT * FROM book_chapters WHERE book_id = ? ORDER BY chapter_number ASC", [$bookId])->fetch_all(MYSQLI_ASSOC);
 ?>
 
-<div class="form-container">
+<div class="form-container" style="max-width: 700px;">
     <h2>Zarządzanie rozdziałami</h2>
     <form id="uploadForm" enctype="multipart/form-data">
         <div class="form-group">
@@ -26,17 +26,11 @@ $chapters = $db->query("SELECT * FROM book_chapters WHERE book_id = ? ORDER BY c
         <button type="submit" class="btn">Dodaj rozdziały</button>
     </form>
 
-    <div id="message"></div>
-
     <div id="progress-container">
         <progress id="progressBar" value="0" max="100"></progress>
         <span id="progressText">0/0</span>
     </div>
-
-    <div id="uploadedFiles">
-        <!-- Tu będą pojawiały się informacje o przesłanych plikach -->
-    </div>
-
+<br /><hr /><br />
     <h3>Lista rozdziałów</h3>
     <ul id="chapter-list" class="sortable"></ul>
 </div>
@@ -57,6 +51,7 @@ $(document).ready(function () {
                             <span class="chapter-number">Rozdział ${chapter.chapter_number}</span>
                             <input type="text" class="chapter-title" value="${chapter.title}">
                             <button class="delete-chapter" data-id="${chapter.id}">Usuń</button>
+                            <button class="" data-id="${chapter.filename}">Włącz</button>
                         </li>
                     `);
                 });
@@ -109,7 +104,6 @@ $(document).ready(function () {
                     if (response.success) {
                         uploadedFiles++; // Zwiększ licznik przesłanych plików
                         progressText.text(`${uploadedFiles}/${totalFiles}`); // Aktualizuj tekst
-                        $('#uploadedFiles').append(`<div>Przesłano plik: ${file.name}</div>`); // Aktualizuj listę
                     } else {
                         alert(`Błąd podczas przesyłania pliku: ${file.name}`);
                     }

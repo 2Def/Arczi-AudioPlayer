@@ -21,7 +21,9 @@ if ($result->num_rows > 0):
 ?>
     <center><h1>Lista dodanych audiobooków</h1></center>
 <div class="book-container">
-    <?php while ($book = $result->fetch_assoc()): ?>
+    <?php while ($book = $result->fetch_assoc()):
+        $chapters = $db->query("SELECT id FROM book_chapters WHERE book_id = ? ORDER BY chapter_number ASC", [$book['id']])->fetch_all(MYSQLI_ASSOC); 
+    ?>
         <div class="book">
             <div class="book-image">
                 <img src="uploads/covers/<?php echo htmlspecialchars($book['avatar_image_name']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
@@ -29,7 +31,7 @@ if ($result->num_rows > 0):
             <div class="book-info">
                 <h3><?php echo htmlspecialchars($book['title']); ?></h3>
                 <p><?php echo htmlspecialchars(truncateText($book['short_description'], 150)); ?></p>
-                <p><strong>Ilość rozdziałów:</strong> (uzupełnij później)</p>
+                <p><strong>Ilość rozdziałów:</strong> <?php echo count($chapters); ?></p>
                 <div class="book-actions">
                     <a href="dashboard.php?page=editBook&id=<?php echo $book['id']; ?>" class="edit-button">EDIT</a>
                     <a href="dashboard.php?page=deleteBook&id=<?php echo $book['id']; ?>" class="delete-button" onclick="return confirm('Czy na pewno chcesz usunąć tę książkę?');">DELETE</a>

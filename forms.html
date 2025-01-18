@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Form</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Extended Form</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <!-- Pole tekstowe -->
+            <div class="form-group">
+                <label for="text">Your Name</label>
+                <input type="text" name="name" id="text" required>
+            </div>
+
+            <!-- Pole file input -->
+            <div class="form-group">
+                <label for="file">Upload a File</label>
+                <input type="file" name="file" id="file" required>
+            </div>
+
+            <!-- Pole textarea -->
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea name="message" id="message" placeholder="Type your message here..."></textarea>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-group checkbox-group">
+                <input type="checkbox" name="agree" id="agree">
+                <label for="agree">I agree to the terms and conditions</label>
+            </div>
+
+            <!-- Przyciski -->
+            <div class="form-group">
+                <button type="submit" class="btn">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

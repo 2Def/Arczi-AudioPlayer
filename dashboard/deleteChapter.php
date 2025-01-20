@@ -18,7 +18,7 @@ $chapterId = (int)$_POST['id'];
 $db = new Database();
 
 // Pobierz informacje o pliku, aby usunąć go z dysku
-$chapter = $db->query("SELECT filename FROM book_chapters WHERE id = ?", [$chapterId])->fetch_assoc();
+$chapter = $db->query("SELECT * FROM book_chapters WHERE id = ?", [$chapterId])->fetch_assoc();
 if ($chapter) {
     $filePath = 'uploads/chapters/' . $chapter['filename'];
     if (file_exists($filePath)) {
@@ -26,8 +26,11 @@ if ($chapter) {
     }
 }
 
-// Usuń rozdział z bazy danych
+$chapterNumber = $chapter['chapter_number'];
+$bookId = $chapter['book_id'];
+
 $db->query("DELETE FROM book_chapters WHERE id = ?", [$chapterId]);
+$db->query("UPDATE book_chapters SET chapter_number = chapter_number - 1 WHERE chapter_number > ? AND book_id = ?", [$chapterNumber, $bookId]);
 
 echo json_encode(['success' => true]);
 

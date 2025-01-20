@@ -24,6 +24,23 @@ try {
         exit;
     }
 
+    $chapter = $db->query("SELECT filename FROM book_chapters WHERE book_id = ?", [$id]);
+
+    if ($chapter->num_rows === 0) {
+        echo "Brak rozdziałów dla książki o ID: $id";
+        var_dump($id);
+    }
+
+    while ($currentChapter = $chapter->fetch_assoc())
+    {
+        $filePath = 'uploads/chapters/' . $currentChapter['filename'];
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+    }
+
+    $db->query("DELETE FROM book_chapters WHERE book_id = ?", [$id]);
+
     $book = $result->fetch_assoc();
     $imageFile = 'uploads/covers/' . $book['avatar_image_name'];
 
@@ -36,6 +53,7 @@ try {
         }
     }
 
+    // DELETE CHAPTERS
     $db->close();
 
     header("Location: dashboard.php");

@@ -63,6 +63,9 @@ function GetPage()
             case 'editChapter':
                 include 'editChapter.php';
                 break;
+            case 'searchBooks':
+                include 'searchBooks.php';
+                break;
             default:
                 echo '<h3>Błąd</h3><p>Wybrana strona nie istnieje.</p>';
                 break;
@@ -90,6 +93,9 @@ function GetPageTitle()
                 break;
             case 'editChapter':
                 echo 'Edycja rozdziałów';
+                break;
+            case 'searchBooks':
+                echo 'Szukaj książek';
                 break;
             default:
                 echo 'Dashboard';
@@ -121,7 +127,7 @@ function GetPageTitle()
             <h2>Nawigacja</h2>
             <a href="dashboard.php">Głowna - Lista książek</a>
             <a href="dashboard.php?page=addNew">Dodaj nową książkę</a>
-            <a href="strona2.html">Przycisk 2</a>
+            <a href="dashboard.php?page=searchBooks">Szukaj książek</a>
             <a href="strona3.html">Przycisk 3</a>
             <a href="strona4.html">Przycisk 4</a>
         </nav>

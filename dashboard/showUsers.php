@@ -15,7 +15,7 @@ $db = new Database();
 $users = $db->query("SELECT id, username, role, registration_date FROM users ORDER BY id ASC");
 
 $roleNames = [
-    1 => 'User',
+    1 => 'Użytkownik',
     2 => 'Moderator',
     3 => 'Administrator'
 ];
@@ -43,8 +43,8 @@ $roleNames = [
                     <td><?php echo $user['registration_date']; ?></td>
                     <td>
                         <div class="action-buttons">
-                            <button class="edit-button" data-id="<?php echo $user['id']; ?>">Edit</button>
-                            <button class="delete-button" data-id="<?php echo $user['id']; ?>" data-username="<?php echo htmlspecialchars($user['username']); ?>">Delete</button>
+                            <a href="dashboard.php?page=editUser&id=<?php echo $user['id']; ?>" class="edit-button">Edytuj</a>
+                            <button class="delete-button" data-id="<?php echo $user['id']; ?>" data-username="<?php echo htmlspecialchars($user['username']); ?>">Usuń</button>
                         </div>
                     </td>
                 </tr>

@@ -54,6 +54,9 @@ function GetPage()
             case 'addNewUser':
                 include 'addNewUser.php';
                 break;
+            case 'editUser':
+                include 'editUser.php';
+                break;
             default:
                 echo '<h3>Błąd</h3><p>Wybrana strona nie istnieje.</p>';
                 break;
@@ -90,6 +93,9 @@ function GetPageTitle()
                 break;
             case 'addNewUser':
                 echo 'Dodaj użytkownika';
+                break;
+            case 'editUser':
+                echo 'Edytuj użytkownika';
                 break;
             default:
                 echo 'Dashboard';

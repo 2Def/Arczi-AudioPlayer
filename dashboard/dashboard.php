@@ -7,29 +7,11 @@ $config = include('../config.php');
 
 $apiKeyBase64 = base64_encode($config['api']['key']);
 
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} elseif (isset($_COOKIE['remember_me'])) {
-    $cookieValue = base64_decode($_COOKIE['remember_me']);
-    list($cookieUsername, $cookieHash) = explode('|', $cookieValue);
+require_once 'getUsername.php';
 
-    $expectedHash = hash_hmac('sha256', $cookieUsername, $config['api']['key']);
+$username = GetUsername();
 
-    if (hash_equals($expectedHash, $cookieHash)) {
-        $username = $cookieUsername;
-        setcookie(
-            'remember_me',
-            base64_encode("$cookieUsername|$expectedHash"),
-            time() + (30 * 24 * 60 * 60),
-            "/", "", true, true
-        );
-    } else {
-        setcookie('remember_me', '', time() - 3600, "/");
-        header("Location: /admin.php?api=" . $apiKeyBase64);
-        exit;
-    }
-} else {
-    echo "ERROR";
+if (!$username) {
     header("Location: /admin.php?api=" . $apiKeyBase64);
     exit;
 }
@@ -66,6 +48,9 @@ function GetPage()
             case 'searchBooks':
                 include 'searchBooks.php';
                 break;
+            case 'showUsers':
+                include 'showUsers.php';
+                break;
             default:
                 echo '<h3>Błąd</h3><p>Wybrana strona nie istnieje.</p>';
                 break;
@@ -96,6 +81,9 @@ function GetPageTitle()
                 break;
             case 'searchBooks':
                 echo 'Szukaj książek';
+                break;
+            case 'showUsers':
+                echo 'Pokaż użytkowników';
                 break;
             default:
                 echo 'Dashboard';
@@ -128,7 +116,7 @@ function GetPageTitle()
             <a href="dashboard.php">Głowna - Lista książek</a>
             <a href="dashboard.php?page=addNew">Dodaj nową książkę</a>
             <a href="dashboard.php?page=searchBooks">Szukaj książek</a>
-            <a href="strona3.html">Przycisk 3</a>
+            <a href="dashboard.php?page=showUsers">Lista użytkowników</a>
             <a href="strona4.html">Przycisk 4</a>
         </nav>
         <div class="content">

@@ -17,7 +17,6 @@ if (!isset($_POST['id']) || !is_numeric($_POST['id'])) {
 $chapterId = (int)$_POST['id'];
 $db = new Database();
 
-// Pobierz informacje o pliku, aby usunąć go z dysku
 $chapter = $db->query("SELECT * FROM book_chapters WHERE id = ?", [$chapterId])->fetch_assoc();
 if ($chapter) {
     $filePath = 'uploads/chapters/' . $chapter['filename'];

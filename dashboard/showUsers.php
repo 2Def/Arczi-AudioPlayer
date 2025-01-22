@@ -51,7 +51,7 @@ $roleNames = [
             <?php endwhile; ?>
         </tbody>
     </table>
-    <button class="info-button" id="add-user-button">Add User</button>
+    <a href="dashboard.php?page=addNewUser" class="info-button">Dodaj użytkownika</a>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {

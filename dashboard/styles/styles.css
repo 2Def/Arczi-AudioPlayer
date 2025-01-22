@@ -378,3 +378,17 @@ th {
     padding: 5px 10px;
     cursor: pointer;
 }
+.message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: none;
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

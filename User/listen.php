@@ -1,3 +1,10 @@
+<?php
+
+  define('ACCESS_ALLOWED', true);
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,12 +14,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.php">Strona Główna</a>
-    <a href="search.php">Szukaj</a>
-    <a href="profile.php">Profil</a>
-    <a href="login.php">Logowanie</a>
-  </nav>
+  <?php require_once('modules/nav.php'); ?>
   <div class="container">
     <!-- Sekcja z informacjami o książce -->
     <div class="book-card" style="flex-direction: column; align-items: center;">

@@ -1,3 +1,10 @@
+<?php
+
+  define('ACCESS_ALLOWED', true);
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,12 +14,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.php">Strona Główna</a>
-    <a href="search.php">Szukaj</a>
-    <a href="profile.php">Profil</a>
-    <a href="login.php">Logowanie</a>
-  </nav>
+  <?php require_once('modules/nav.php'); ?>
   <div class="container">
     <div class="header-container">
         <h1>Audiobooki</h1>
@@ -24,7 +26,7 @@
         <h3>Tytuł Książki 1</h3>
         <p>Krótki opis książki, który zachęci do słuchania.</p>
         <p class="progress">Aktualnie czytane - 45% przesłuchane</p>
-        <button onclick="window.location.href='listen.html'">Słuchaj</button>
+        <button onclick="window.location.href='listen.php'">Słuchaj</button>
       </div>
     </div>
     
@@ -34,7 +36,7 @@
       <div class="book-details">
         <h3>Tytuł Książki 2</h3>
         <p>Opis innej książki, zachęcający do odsłuchu.</p>
-        <button onclick="window.location.href='listen.html'">Słuchaj</button>
+        <button onclick="window.location.href='listen.php'">Słuchaj</button>
       </div>
     </div>
   </div>

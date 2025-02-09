@@ -66,6 +66,8 @@ if (empty($_SESSION['csrf_token'])) {
                 success: function (response) {
                     $('#message').html('<p>' + response.message + '</p>');
                     $('#message').append('<p>ID: ' + response.id + '</p>');
+                    $('#message').append('<p><a href="dashboard.php?page=editChapter&id= ' + response.id + '"class="edit-button">Edytuj rozdziały</a></p>');
+                    
                     if (response.success) {
                         $('#uploadForm')[0].reset();
                         $('#progressBar').val(0);

@@ -1,3 +1,10 @@
+<?php
+
+  define('ACCESS_ALLOWED', true);
+  session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,12 +14,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <nav>
-    <a href="index.php">Strona Główna</a>
-    <a href="search.php">Szukaj</a>
-    <a href="profile.php">Profil</a>
-    <a href="login.php">Logowanie</a>
-  </nav>
+  <?php require_once('modules/nav.php'); ?>
   <div class="container">
     <h1 class="no-wrap">Wyszukiwanie</h1>
     <div class="search-container">
@@ -26,7 +28,7 @@
       <div class="book-details">
         <h3>Tytuł Książki 3</h3>
         <p>Krótki opis książki.</p>
-        <button onclick="window.location.href='listen.html'">Słuchaj</button>
+        <button onclick="window.location.href='listen.php'">Słuchaj</button>
       </div>
     </div>
   </div>

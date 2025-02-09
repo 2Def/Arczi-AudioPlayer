@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Słuchaj - Audiobook</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.php">Strona Główna</a>
+    <a href="search.php">Szukaj</a>
+    <a href="profile.php">Profil</a>
+    <a href="login.php">Logowanie</a>
+  </nav>
+  <div class="container">
+    <!-- Sekcja z informacjami o książce -->
+    <div class="book-card" style="flex-direction: column; align-items: center;">
+      <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki" style="width: 200px; height: 300px;">
+      <h2>Tytuł Książki 1</h2>
+      <p>Krótki opis książki, który przybliża treść i zachęca do słuchania.</p>
+    </div>
+    
+    <!-- Lista rozdziałów (obszar przewijany poziomo) -->
+    <div class="chapter-list">
+    <div class="chapter-item active" data-audio="audio/chapter1.mp3">
+        <div>Rozdział 1</div>
+        <div class="chapter-name">Wprowadzenie</div>
+        <small>50% przesłuchane</small>
+    </div>
+    <div class="chapter-item" data-audio="audio/chapter2.mp3">
+        <div>Rozdział 2</div>
+        <div class="chapter-name">Przygoda</div>
+        <small>0% przesłuchane</small>
+    </div>
+    <div class="chapter-item" data-audio="audio/chapter3.mp3">
+        <div>Rozdział 3</div>
+        <div class="chapter-name">Kulminacja</div>
+        <small>0% przesłuchane</small>
+    </div>
+    <div class="chapter-item" data-audio="audio/chapter4.mp3">
+        <div>Rozdział 4</div>
+        <div class="chapter-name">Zakończenie</div>
+        <small>0% przesłuchane</small>
+    </div>
+    </div>
+    
+    <!-- Stylizowany odtwarzacz audio -->
+    <audio id="audioPlayer" class="audio-player" controls>
+      <source src="audio/chapter1.mp3" type="audio/mp3">
+      Twoja przeglądarka nie wspiera elementu audio.
+    </audio>
+  </div>
+  
+  <script src="assets/script.js"></script>
+</body>
+</html>

@@ -25,10 +25,7 @@ require(MODULES . 'checkBlock.php');
     <div class="book-container">
     <!-- Przykładowa karta książki z informacją o postępie -->
       <div class="book-card">
-        <div class="book-cover">
-          <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
-          <div class="progress-overlay">Przeczytano 40%</div>
-        </div>
+        <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
         <div class="book-details">
           <h3>Tytuł Książki 1</h3>
           <p>Krótki opis książki, który zachęci do słuchania.</p>

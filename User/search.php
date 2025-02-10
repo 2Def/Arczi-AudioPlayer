@@ -16,20 +16,37 @@
 <body>
   <?php require_once('modules/nav.php'); ?>
   <div class="container">
-    <h1 class="no-wrap">Wyszukiwanie</h1>
+    
+    <div class="header-container">
+      <h1 class="no-wrap">Wyszukiwanie</h1>
+    </div>
+
     <div class="search-container">
       <input type="search" id="searchInput" placeholder="Szukaj książek...">
       <button onclick="performSearch()">Szukaj</button>
     </div>
     
+    <div class="book-container">
     <!-- Przykładowy wynik wyszukiwania -->
-    <div class="book-card">
-      <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
-      <div class="book-details">
-        <h3>Tytuł Książki 3</h3>
-        <p>Krótki opis książki.</p>
-        <button onclick="window.location.href='listen.php'">Słuchaj</button>
+
+      <div class="book-card">
+        <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
+        <div class="book-details">
+          <h3>Tytuł Książki 3</h3>
+          <p>Krótki opis książki.</p>
+          <button onclick="window.location.href='listen.php'">Słuchaj</button>
+        </div>
       </div>
+
+      <div class="book-card">
+        <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
+        <div class="book-details">
+          <h3>Tytuł Książki 3</h3>
+          <p>Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.</p>
+          <button onclick="window.location.href='listen.php'">Słuchaj</button>
+        </div>
+      </div>
+
     </div>
   </div>
   <script>

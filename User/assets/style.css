@@ -244,13 +244,6 @@ button:hover {
     margin-top: 4px;
     font-style: italic;
   }  
-  
-  /* Stylizacja odtwarzacza audio */
-  .audio-player {
-    width: 100%;
-    outline: none;
-    margin-top: 20px;
-  }
 
   /* Zapobiega zawijaniu się nagłówka na wiele linii */
   .no-wrap {
@@ -318,6 +311,45 @@ button:hover {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+.player {
+  background: #333;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 400px;
+  margin: auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.controls button {
+  all: unset;
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.controls button:hover {
+  background: #0056b3;
+}
+
+.player input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
 
   /* Responsywność */
   @media (max-width: 768px) {

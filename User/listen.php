@@ -50,11 +50,16 @@ require(MODULES . 'checkBlock.php');
     </div>
     </div>
     
-    <!-- Stylizowany odtwarzacz audio -->
-    <audio id="audioPlayer" class="audio-player" controls>
-      <source src="audio/chapter1.mp3" type="audio/mp3">
-      Twoja przeglądarka nie wspiera elementu audio.
-    </audio>
+    <div class="player">
+        <h3>Rozdział 17</h3>
+        <audio id="audio" src="your-audio-file.mp3"></audio>
+        <input type="range" id="progress" value="0" min="0" step="1">
+        <div class="controls">
+            <button onclick="rewind()">⏪</button>
+            <button onclick="togglePlayPause()">▶️</button>
+            <button onclick="forward()">⏩</button>
+        </div>
+    </div>
   </div>
   
   <script src="assets/script.js"></script>

@@ -7,6 +7,7 @@ session_start();
 require(MODULES . 'checkBlock.php');
 require(MODULES . 'checkLogin.php');
 require(MODULES . 'csrfToken.php');
+
 $error = null;
 
 require_once '../mysql.php';
@@ -17,8 +18,12 @@ $db = new Database();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-    die("Nieprawidłowy token CSRF!");
-}
+      die("Nieprawidłowy token CSRF!");
+  }
+
+  if (!isset($_SESSION['attempts'])) {
+      $_SESSION['attempts'] = 0;
+  }
 
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';

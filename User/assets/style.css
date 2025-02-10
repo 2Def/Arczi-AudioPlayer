@@ -157,7 +157,6 @@ button:hover {
     text-align: center;
     max-width: 275px;
     min-width: 275px;
-    justify-content: space-between;
   }
   
   .book-card img {
@@ -181,7 +180,7 @@ button:hover {
     margin-bottom: 10px;
   }
   
-  .book-details button
+  .book-card button
   {
     margin-top: auto;
   }

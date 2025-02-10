@@ -1,7 +1,10 @@
 <?php
 
-  define('ACCESS_ALLOWED', true);
-  session_start();
+define('ACCESS_ALLOWED', true);
+define('MODULES', 'modules/');
+session_start();
+
+require(MODULES . 'checkBlock.php');
 
 ?>
 
@@ -42,7 +45,7 @@
         <img src="../dashboard/uploads/covers/cover_678a8c382a10a1.04483360.jpg" alt="Okładka książki">
         <div class="book-details">
           <h3>Tytuł Książki 3</h3>
-          <p>Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.Opis innej książki, zachęcający do odsłuchu.</p>
+          <p>Opis innej książki, zachęcający do odsłuchu.Opis innej książki</p>
           <button onclick="window.location.href='listen.php'">Słuchaj</button>
         </div>
       </div>

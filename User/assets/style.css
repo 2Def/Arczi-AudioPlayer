@@ -48,25 +48,10 @@
     background-color: rgba(255, 255, 255, 0.2);
   }
   
-  /* Przyciski */
-  button {
-    background-color: #3f51b5;
-    border: none;
-    color: #ffffff;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #303f9f;
-  }
-  
-  /* Stylizacja inputów */
-  input[type="text"],
-  input[type="password"],
-  input[type="search"] {
+ /* Stylizacja inputów */
+input[type="text"],
+input[type="password"],
+input[type="search"] {
     background-color: #1e1e1e;
     border: 1px solid #333;
     color: #e0e0e0;
@@ -74,12 +59,92 @@
     border-radius: 5px;
     width: 100%;
     margin-bottom: 10px;
-  }
-  
-  input::placeholder {
+}
+
+input::placeholder {
     color: #888;
-  }
-  
+}
+
+/* Stylizacja formularza */
+form {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 450px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Stylizacja etykiet */
+label {
+    display: block;
+    color: #e0e0e0;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+/* Stylizacja checkboxa */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: start;
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #555;
+    background-color: #1e1e1e;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #4a90e2;
+    border-color: #4a90e2;
+}
+
+input[type="checkbox"]::before {
+    content: "✔";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+input[type="checkbox"]:checked::before {
+    display: block;
+}
+
+/* Stylizacja przycisku */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
   /* Karta książki */
   .book-card {
     background-color: #1e1e1e;
@@ -92,6 +157,7 @@
     text-align: center;
     max-width: 275px;
     min-width: 275px;
+    justify-content: space-between;
   }
   
   .book-card img {
@@ -100,6 +166,11 @@
     object-fit: cover;
     border-radius: 5px;
     margin-bottom: 15px;
+  }
+
+  .book-details
+  {
+    width: 100%;
   }
   
   .book-details h3 {
@@ -110,6 +181,11 @@
     margin-bottom: 10px;
   }
   
+  .book-details button
+  {
+    margin-top: auto;
+  }
+
   /* Informacja o postępie słuchania */
   .progress {
     font-size: 0.9em;
@@ -236,6 +312,13 @@
     gap: 20px;
     justify-content: center;
   }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
   /* Responsywność */
   @media (max-width: 768px) {

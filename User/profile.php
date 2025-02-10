@@ -1,7 +1,10 @@
 <?php
 
-  define('ACCESS_ALLOWED', true);
-  session_start();
+define('ACCESS_ALLOWED', true);
+define('MODULES', 'modules/');
+session_start();
+
+require(MODULES . 'checkBlock.php');
 
 ?>
 

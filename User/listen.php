@@ -52,7 +52,7 @@ require(MODULES . 'checkBlock.php');
     
     <div class="player">
         <h3>Rozdział 17</h3>
-        <audio id="audio" src="/dashboard/uploads/chapters/chapter_67a8d4bc3fa541.99844359.mp3"></audio>
+        <audio id="audio" src="/dashboard/uploads/chapters/chapter_678c18e258e804.18196159.mp3"></audio>
         <div class="time">
             <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
         </div>
@@ -64,59 +64,6 @@ require(MODULES . 'checkBlock.php');
         </div>
     </div>
   </div>
-  <script>
-        const audio = document.getElementById("audio");
-        const progress = document.getElementById("progress");
-        const currentTimeDisplay = document.getElementById("currentTime");
-        const durationDisplay = document.getElementById("duration");
-        const playPauseButton = document.getElementById("playPauseButton");
-        
-        function formatTime(seconds) {
-            const min = Math.floor(seconds / 60);
-            const sec = Math.floor(seconds % 60);
-            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
-        }
-        
-        function togglePlayPause() {
-            if (audio.paused) {
-                audio.play();
-                playPauseButton.textContent = "⏸️";
-            } else {
-                audio.pause();
-                playPauseButton.textContent = "▶️";
-            }
-        }
-        
-        function rewind() {
-            audio.currentTime -= 5;
-        }
-        
-        function forward() {
-            audio.currentTime += 5;
-        }
-        
-        audio.addEventListener("loadedmetadata", () => {
-            durationDisplay.textContent = formatTime(audio.duration);
-        });
-        
-        audio.addEventListener("timeupdate", () => {
-            progress.max = audio.duration;
-            progress.value = audio.currentTime;
-            currentTimeDisplay.textContent = formatTime(audio.currentTime);
-        });
-        
-        progress.addEventListener("input", () => {
-            audio.currentTime = progress.value;
-        });
-
-        audio.addEventListener("play", () => {
-            playPauseButton.textContent = "⏸️";
-        });
-
-        audio.addEventListener("pause", () => {
-            playPauseButton.textContent = "▶️";
-        });
-    </script>
   <script src="assets/script.js"></script>
 </body>
 </html>

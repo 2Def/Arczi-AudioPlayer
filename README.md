@@ -6,5 +6,5 @@ Admin:
 <img width="1919" height="916" alt="image" src="https://github.com/user-attachments/assets/0053bde4-5309-4b50-9ccb-703f0610a07a" />
 
 User:
-<img width="853" height="896" alt="image" src="https://github.com/user-attachments/assets/a4f120a5-5f55-4a17-9d59-4370ce821adc" />
 
+<img width="853" height="896" alt="image" src="https://github.com/user-attachments/assets/a4f120a5-5f55-4a17-9d59-4370ce821adc" />
